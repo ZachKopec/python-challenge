@@ -27,10 +27,10 @@ liTot = candidate_list.count("Li")
 oToolTot = candidate_list.count("O'Tooley")
 
 print("Total Votes: " + str(tot_votes))
-print("Khan: " + str((khanTot/tot_votes)*100) + "% " + "(" + str(khanTot) + ")")
-print("Correy: " + str((correyTot/tot_votes)*100) + "% " + "(" + str(correyTot) + ")")
-print("Li: " + str((liTot/tot_votes)*100) + "% " + "(" + str(liTot) + ")")
-print("O'Tooley: " + str((oToolTot/tot_votes)*100) + "% " + "(" + str(oToolTot) + ")")
+print("Khan: " + str(format(round((khanTot/tot_votes)*100),'.3f')) + "% " + "(" + str(khanTot) + ")")
+print("Correy: " + str(format(round((correyTot/tot_votes)*100),'.3f')) + "% " + "(" + str(correyTot) + ")")
+print("Li: " + str(format(round((liTot/tot_votes)*100),'.3f')) + "% " + "(" + str(liTot) + ")")
+print("O'Tooley: " + str(format(round((oToolTot/tot_votes)*100),'.3f')) + "% " + "(" + str(oToolTot) + ")")
 if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
     print("Winner: Khan")
 elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:
@@ -49,10 +49,10 @@ with open(output_file, 'w') as txtfile:
 
     #write each data point to an individual line in the text file
     txtfile.write("Total Votes: " + str(tot_votes) + "\n")
-    txtfile.write("Khan: " + str((khanTot/tot_votes)*100) + "% " + "(" + str(khanTot) + ")" + "\n")
-    txtfile.write("Correy: " + str((correyTot/tot_votes)*100) + "% " + "(" + str(correyTot) + ")" + "\n")
-    txtfile.write("Li: " + str((liTot/tot_votes)*100) + "% " + "(" + str(liTot) + "\n")
-    txtfile.write("O'Tooley: " + str((oToolTot/tot_votes)*100) + "% " + "(" + str(oToolTot) + ")" + "\n")
+    txtfile.write("Khan: " + str(format(round((khanTot/tot_votes)*100),'.3f')) + "% " + "(" + str(khanTot) + ")" + "\n")
+    txtfile.write("Correy: " + str(format(round((correyTot/tot_votes)*100),'.3f')) + "% " + "(" + str(correyTot) + ")" + "\n")
+    txtfile.write("Li: " + str(format(round((liTot/tot_votes)*100),'.3f')) + "% " + "(" + str(liTot) + ")" + "\n")
+    txtfile.write("O'Tooley: " + str(format(round((oToolTot/tot_votes)*100),'.3f')) + "% " + "(" + str(oToolTot) + ")" + "\n")
     if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
         txtfile.write("Winner: Khan")
     elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:

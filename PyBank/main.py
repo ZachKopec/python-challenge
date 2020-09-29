@@ -51,7 +51,7 @@ with open(output_file, 'w') as txtfile:
     #write each data point to an individual line in the text file
     txtfile.write("Total Months: " + str(mth_count) + "\n")
     txtfile.write("Total: " + str(sum(rev)) + "\n")
-    txtfile.write("Average Change: " + str(sum(avg_chng)/(mth_count-1)) + "\n")
+    txtfile.write("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)) + "\n")
     txtfile.write("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " $" + str(max(avg_chng)) + "\n")
     txtfile.write("Greatest Deacrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $" + str(min(avg_chng)) + "\n")
 
