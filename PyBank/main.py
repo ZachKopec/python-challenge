@@ -37,9 +37,9 @@ with open(csvpath) as csvfile:
 
 print("Total Months: " + str(mth_count))
 print("Total: " + str(sum(rev)))
-print("Average Change: " + str(sum(avg_chng)/(mth_count-1)))
-print("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " $" + str(max(avg_chng)))
-print("Greatest Increase in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $" + str(min(avg_chng)))
+print("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)))
+print("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " ($" + str(max(avg_chng)) + ")")
+print("Greatest Decrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " ($" + str(min(avg_chng)) + ")")
 
 
 # Specify the file to write to
@@ -53,7 +53,7 @@ with open(output_file, 'w') as txtfile:
     txtfile.write("Total: " + str(sum(rev)) + "\n")
     txtfile.write("Average Change: " + str(sum(avg_chng)/(mth_count-1)) + "\n")
     txtfile.write("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " $" + str(max(avg_chng)) + "\n")
-    txtfile.write("Greatest Increase in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $" + str(min(avg_chng)) + "\n")
+    txtfile.write("Greatest Deacrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $" + str(min(avg_chng)) + "\n")
 
     txtfile.close()
 
