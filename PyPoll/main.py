@@ -39,3 +39,27 @@ elif liTot > khanTot and liTot > correyTot and correyTot > oToolTot:
     print("Winner: Li")
 elif oToolTot > khanTot and oToolTot > correyTot and oToolTot > liTot:
     print("Winner: O'Tooley")
+
+
+# Specify the file to write to
+output_file = os.path.join("PyPoll", "Analysis", "poll_data.txt")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_file, 'w') as txtfile:
+
+    #write each data point to an individual line in the text file
+    txtfile.write("Total Votes: " + str(tot_votes) + "\n")
+    txtfile.write("Khan: " + str((khanTot/tot_votes)*100) + "% " + "(" + str(khanTot) + ")" + "\n")
+    txtfile.write("Correy: " + str((correyTot/tot_votes)*100) + "% " + "(" + str(correyTot) + ")" + "\n")
+    txtfile.write("Li: " + str((liTot/tot_votes)*100) + "% " + "(" + str(liTot) + "\n")
+    txtfile.write("O'Tooley: " + str((oToolTot/tot_votes)*100) + "% " + "(" + str(oToolTot) + ")" + "\n")
+    if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
+        txtfile.write("Winner: Khan")
+    elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:
+        txtfile.write("Winner: Correy")
+    elif liTot > khanTot and liTot > correyTot and correyTot > oToolTot:
+        txtfile.write("Winner: Li")
+    elif oToolTot > khanTot and oToolTot > correyTot and oToolTot > liTot:
+        txtfile.write("Winner: O'Tooley")
+
+    txtfile.close()
