@@ -16,14 +16,16 @@ csvpath = os.path.join('PyBank','Resources','budget_data.csv')
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
 
-    #
+    #initialize header row
     csv_header = next(csv_reader)
-    first_row = next(csv_reader)
-    row_prior = (int(first_row[1]))
+    #initialize first data row
+    current_row = next(csv_reader)
+    #initalize variable to hold first data row profit/loss
+    mth_prev = int(current_row[1])
 
-    rev.append(int(first_row[1]))
-    mth_chng = int(row_prior)
-    mth.append(first_row[0])
+    #start lists with data from first row
+    rev.append(int(current_row[1]))
+    mth.append(current_row[0])
 
     #loop through every row in csv file
     for row in csv_reader:
@@ -31,16 +33,17 @@ with open(csvpath) as csvfile:
         mth_count += 1
         #append lists in every iteration to benchmark data points
         rev.append(int(row[1]))
-        avg_chng.append(int(row[1])-mth_chng)
+        avg_chng.append(int(row[1])-mth_prev)
         mth.append(row[0])
         #store current row's profit/loss value as variable at the end of the loop to preserve value for the next row's monthly change
-        mth_chng = int(row[1])
-        
+        mth_prev = int(row[1])
+
+#print required text & analysis to the terminal   
 print("Financial Analysis")
 print("----------------------------")
 print("Total Months: " + str(mth_count))
-print("Total: " + str(sum(rev)))
-print("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)))
+print("Total: $" + str(sum(rev)))
+print("Average Change: $" + str(round(sum(avg_chng)/(mth_count-1),2)))
 print("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " ($" + str(max(avg_chng)) + ")")
 print("Greatest Decrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " ($" + str(min(avg_chng)) + ")")
 
@@ -55,10 +58,10 @@ with open(output_file, 'w') as txtfile:
     txtfile.write("Financial Analysis" + "\n")
     txtfile.write("----------------------------" + "\n")
     txtfile.write("Total Months: " + str(mth_count) + "\n")
-    txtfile.write("Total: " + str(sum(rev)) + "\n")
-    txtfile.write("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)) + "\n")
-    txtfile.write("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " $" + str(max(avg_chng)) + "\n")
-    txtfile.write("Greatest Deacrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $" + str(min(avg_chng)) + "\n")
+    txtfile.write("Total: $" + str(sum(rev)) + "\n")
+    txtfile.write("Average Change: $" + str(round(sum(avg_chng)/(mth_count-1),2)) + "\n")
+    txtfile.write("Greatest Increase in Profits: " + str(mth[avg_chng.index(max(avg_chng))+1]) + " $(" + str(max(avg_chng)) + ")" + "\n")
+    txtfile.write("Greatest Deacrease in Profits: " + str(mth[avg_chng.index(min(avg_chng))+1]) + " $(" + str(min(avg_chng)) + ")" + "\n")
 
     txtfile.close()
 

@@ -1,31 +1,40 @@
 import os
 import csv
 
-
+#Needed variables
 tot_votes = 0
 
-#Lists
+#Needed Lists
 id_lst = []
 country_lst = []
 candidate_list = []
 
+#file path
 csvpath = os.path.join('PyPoll','Resources','election_data.csv')
 
+#when code is run: open file 
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
+    
+    #initialize header row
     csv_header = next(csv_reader)
 
+    #loop through every row in csv file
     for row in csv_reader:
 
+        #increment the vote count by 1 for every non-header row in data set
         tot_votes += 1
+        #append lists in every iteration to benchmark data points
         id_lst.append(str(row[0]))
         candidate_list.append(str(row[2]))
 
+#store a count of each candidate's list to determine vote totals
 khanTot = candidate_list.count("Khan")
 correyTot = candidate_list.count("Correy")
 liTot = candidate_list.count("Li")
 oToolTot = candidate_list.count("O'Tooley")
 
+#print required text & analysis to the terminal 
 print("Election Results")
 print("-------------------------")
 print("Total Votes: " + str(tot_votes))
@@ -35,6 +44,7 @@ print("Correy: " + str(format(round((correyTot/tot_votes)*100),'.3f')) + "% " + 
 print("Li: " + str(format(round((liTot/tot_votes)*100),'.3f')) + "% " + "(" + str(liTot) + ")")
 print("O'Tooley: " + str(format(round((oToolTot/tot_votes)*100),'.3f')) + "% " + "(" + str(oToolTot) + ")")
 print("-------------------------")
+#conditional to print winner's name
 if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
     print("Winner: Khan")
 elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:
