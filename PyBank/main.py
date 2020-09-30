@@ -4,17 +4,19 @@ import csv
 #Needed variables
 mth_count = 1
 
-#Lists
+#Needed Lists
 mth = []
 rev = []
 avg_chng = []
 
-csvpath = os.path.join('Resources','budget_data.csv')
+#file path
+csvpath = os.path.join('PyBank','Resources','budget_data.csv')
 
-
+#when code is run: open file 
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
 
+    #
     csv_header = next(csv_reader)
     first_row = next(csv_reader)
     row_prior = (int(first_row[1]))
@@ -34,7 +36,8 @@ with open(csvpath) as csvfile:
         #store current row's profit/loss value as variable at the end of the loop to preserve value for the next row's monthly change
         mth_chng = int(row[1])
         
-
+print("Financial Analysis")
+print("----------------------------")
 print("Total Months: " + str(mth_count))
 print("Total: " + str(sum(rev)))
 print("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)))
@@ -49,6 +52,8 @@ output_file = os.path.join("PyBank", "Analysis", "budget_data.txt")
 with open(output_file, 'w') as txtfile:
 
     #write each data point to an individual line in the text file
+    txtfile.write("Financial Analysis" + "\n")
+    txtfile.write("----------------------------" + "\n")
     txtfile.write("Total Months: " + str(mth_count) + "\n")
     txtfile.write("Total: " + str(sum(rev)) + "\n")
     txtfile.write("Average Change: " + str(round(sum(avg_chng)/(mth_count-1),2)) + "\n")

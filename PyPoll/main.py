@@ -9,7 +9,7 @@ id_lst = []
 country_lst = []
 candidate_list = []
 
-csvpath = os.path.join('Resources','election_data.csv')
+csvpath = os.path.join('PyPoll','Resources','election_data.csv')
 
 with open(csvpath) as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
@@ -26,11 +26,15 @@ correyTot = candidate_list.count("Correy")
 liTot = candidate_list.count("Li")
 oToolTot = candidate_list.count("O'Tooley")
 
+print("Election Results")
+print("-------------------------")
 print("Total Votes: " + str(tot_votes))
+print("-------------------------")
 print("Khan: " + str(format(round((khanTot/tot_votes)*100),'.3f')) + "% " + "(" + str(khanTot) + ")")
 print("Correy: " + str(format(round((correyTot/tot_votes)*100),'.3f')) + "% " + "(" + str(correyTot) + ")")
 print("Li: " + str(format(round((liTot/tot_votes)*100),'.3f')) + "% " + "(" + str(liTot) + ")")
 print("O'Tooley: " + str(format(round((oToolTot/tot_votes)*100),'.3f')) + "% " + "(" + str(oToolTot) + ")")
+print("-------------------------")
 if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
     print("Winner: Khan")
 elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:
@@ -39,7 +43,7 @@ elif liTot > khanTot and liTot > correyTot and correyTot > oToolTot:
     print("Winner: Li")
 elif oToolTot > khanTot and oToolTot > correyTot and oToolTot > liTot:
     print("Winner: O'Tooley")
-
+print("-------------------------")
 
 # Specify the file to write to
 output_file = os.path.join("PyPoll", "Analysis", "poll_data.txt")
@@ -48,18 +52,23 @@ output_file = os.path.join("PyPoll", "Analysis", "poll_data.txt")
 with open(output_file, 'w') as txtfile:
 
     #write each data point to an individual line in the text file
+    txtfile.write("Election Results" + "\n")
+    txtfile.write("-------------------------" + "\n")
     txtfile.write("Total Votes: " + str(tot_votes) + "\n")
+    txtfile.write("-------------------------" + "\n")
     txtfile.write("Khan: " + str(format(round((khanTot/tot_votes)*100),'.3f')) + "% " + "(" + str(khanTot) + ")" + "\n")
     txtfile.write("Correy: " + str(format(round((correyTot/tot_votes)*100),'.3f')) + "% " + "(" + str(correyTot) + ")" + "\n")
     txtfile.write("Li: " + str(format(round((liTot/tot_votes)*100),'.3f')) + "% " + "(" + str(liTot) + ")" + "\n")
     txtfile.write("O'Tooley: " + str(format(round((oToolTot/tot_votes)*100),'.3f')) + "% " + "(" + str(oToolTot) + ")" + "\n")
+    txtfile.write("-------------------------" + "\n")
     if khanTot > correyTot and khanTot > liTot and khanTot > oToolTot:
-        txtfile.write("Winner: Khan")
+        txtfile.write("Winner: Khan" + "\n")
     elif correyTot > khanTot and correyTot > liTot and correyTot > oToolTot:
-        txtfile.write("Winner: Correy")
+        txtfile.write("Winner: Correy" + "\n")
     elif liTot > khanTot and liTot > correyTot and correyTot > oToolTot:
-        txtfile.write("Winner: Li")
+        txtfile.write("Winner: Li" + "\n")
     elif oToolTot > khanTot and oToolTot > correyTot and oToolTot > liTot:
-        txtfile.write("Winner: O'Tooley")
+        txtfile.write("Winner: O'Tooley" + "\n")
+    txtfile.write("-------------------------" + "\n")
 
     txtfile.close()
